@@ -4,7 +4,11 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { IoEyeOutline } from "react-icons/io5";
+import { IoArrowBackOutline } from "react-icons/io5";
+import { IoArrowForward } from "react-icons/io5";
+
 import { MdStar } from "react-icons/md";
+import { useRef } from "react";
 
 const Card = ({ title, image }) => {
   return (
@@ -45,6 +49,8 @@ const Today = () => {
     { title: "Card 3", image: "/image.png" },
     // Add more cards as needed
   ];
+  const swiperRef = useRef(null); // مرجع لمكون Swiper
+
   return (
     <section className="ml-[12%] mt-[9%]">
       <section>
@@ -73,10 +79,26 @@ const Today = () => {
             <span className="text-1xl font-bold">Seconds</span>
             <div className="text-4xl font-bold">03</div>
           </div>
+          <div className="flex justify-end items-end w-[50%]">
+            {" "}
+            <button
+              onClick={() => swiperRef.current?.slidePrev()}
+              className="prev-bt flex justify-center items-center bg-gray-200 w-14 h-14 rounded-full "
+            >
+              <IoArrowBackOutline className="text-2xl" />
+            </button>
+            <button
+              onClick={() => swiperRef.current?.slideNext()}
+              className="next-btn flex justify-center items-center bg-gray-200 w-14 h-14 rounded-full ml-3"
+            >
+              <IoArrowForward className="text-2xl" />
+            </button>
+          </div>
         </div>
       </section>
       <section>
         <Swiper
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
           spaceBetween={20}
           slidesPerView={4} // Number of visible cards
           pagination={{ clickable: true }} // Add pagination dots
