@@ -1,24 +1,48 @@
 "use client";
+import Image from "next/image";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { IoIosHeartEmpty } from "react-icons/io";
+import { IoEyeOutline } from "react-icons/io5";
+import { MdStar } from "react-icons/md";
 
 const Card = ({ title, image }) => {
   return (
     <section>
-      <div className="bg-slate-300 w-[270px] h-[270px] mt-9"></div>
-      <div></div>
+      <div className="mt-9 relative">
+        <Image src={image} width={270} height={270} alt="image" />
+      </div>
+      <div className="bg-red-500 w-14 h-8 rounded absolute top-12 left-2  flex items-center justify-center">
+        <div className="text-white  text-sm  ">-40%</div>
+      </div>
+      <div className="bg-white rounded-full absolute top-12 left-[60%] w-6 h-6 flex items-center justify-center">
+        <IoIosHeartEmpty className=" text-black " />
+      </div>
+      <div className="bg-white rounded-full absolute top-[33%] left-[60%] w-6 h-6 flex items-center justify-center">
+        <IoEyeOutline className=" text-black " />
+      </div>
+      <div className="font-bold">HAVIT HV-G92 Gamepad</div>
+      <div className="flex">
+        <div className="text-red-500">$120</div>
+        <div className="line-through text-gray-400 pl-2">$160</div>
+      </div>
+      <div className="flex text-yellow-500">
+        {Array.from({ length: 5 }, (_, i) => (
+          <MdStar key={i} />
+        ))}
+      </div>
     </section>
   );
 };
 
 const Today = () => {
   const cards = [
-    { title: "Card 1", image: "./image.png" },
-    { title: "Card 2", image: "./image.png" },
-    { title: "Card 3", image: "./image.png" },
-    { title: "Card 3", image: "./image.png" },
-    { title: "Card 3", image: "./image.png" },
-    { title: "Card 3", image: "./image.png" },
+    { title: "Card 1", image: "/image.png" },
+    { title: "Card 2", image: "/image.png" },
+    { title: "Card 3", image: "/image.png" },
+    { title: "Card 3", image: "/image.png" },
+    { title: "Card 3", image: "/image.png" },
+    { title: "Card 3", image: "/image.png" },
     // Add more cards as needed
   ];
   return (
@@ -51,7 +75,7 @@ const Today = () => {
           </div>
         </div>
       </section>
-      <section className="h-[400px]">
+      <section>
         <Swiper
           spaceBetween={20}
           slidesPerView={4} // Number of visible cards
@@ -64,6 +88,11 @@ const Today = () => {
           ))}
         </Swiper>
       </section>
+      <div className=" flex items-center justify-center pt-8 ">
+        <button className="bg-red-500 text-white pl-6 pr-6 py-4 rounded">
+          View All Products
+        </button>
+      </div>
     </section>
   );
 };
